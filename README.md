@@ -12,46 +12,67 @@
 8. 收费可以用现金或者信用卡
 
 
-Object：     
+## Object：     
 
 ParkingLot      
 ParkingSpot      
 ParkingTicket
 
  
-ParkingLot:应管理所有的停车位并处理停车场的总体运作            
+## ParkingLot:应管理所有的停车位并处理停车场的总体运作            
   
-field:         
+### field:         
 管理停车位的集合（如 List<ParkingSpot> 或 Map<String, ParkingSpot>）
 管理活跃停车票的集合（如 List<ParkingTicket> 或 Map<String, ParkingTicket>）
 
 
-method:       
+### method:       
 添加/移除停车位的方法        
 停车方法（生成一个 ParkingTicket）       
 取车方法（用 ParkingTicket 来计算费用）        
 检查可用的停车位        
 
-ParkingSpot:应包含关于个别停车位的信息     
+## ParkingSpot:应包含关于个别停车位的信息     
 
-field:      
+### field:      
 parkingLocation：停车位位置     
 hourlyRatio：停车价格       
 
-method:  
+### method:  
 停车        
 退出     
 
  
-ParkingTicket(算费用，记录时间，根据车位类型展示不同的价格)。     
+## ParkingTicket(算费用，记录时间，根据车位类型展示不同的价格)。     
 
-field:     
+### field:     
 ticketID：停车票的唯一标识符        
 startTime：车辆停放的开始时间      
 endTime：车辆离开的时间（用于计算停放时长）    
 rate：每小时的收费率    
 
-method:    
+### method:    
 根据停放时长和停车位类型计算费用的方法   
 打印或显示停车票信息的方法         
 
+## 设计步骤       
+需求分析：     
+分析停车场的功能需求，比如必须处理的任务（停车、离开、计费）和必要的信息（停车位的类型和状态、停车的时间等）。  
+
+抽象化：       
+根据需求，识别出核心对象（如停车场、停车位、停车票）。            
+
+封装：                
+确定每个对象应该拥有的信息（字段）和能够执行的操作（方法），使得对象的具体实现对外部是隐藏的，只通过定义好的接口与外界交互。          
+
+继承和多态：     
+分析对象间的关系，确定是否有继承关系。例如，不同类型的停车位可能共享某些特性，但也有它们特有的行为。          
+
+单一职责原则：              
+确保每个类只负责一块功能。例如，ParkingSpot 只管理停车位的信息，而费用计算应由 ParkingTicket 负责。           
+
+开闭原则：            
+设计系统时，使得它对扩展开放，对修改封闭。例如，如果需要添加新的停车位类型，应该可以在不修改现有代码的情况下扩展。       
+
+设计模式：            
+使用常见的设计模式来解决特定问题，如工厂模式可以用来创建不同类型的停车位。         
